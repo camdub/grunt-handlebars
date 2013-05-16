@@ -13,17 +13,17 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('handlebars', 'Precompile Handlebars template', function() {
     var self = this;
     var done = self.async();
-    var templateDir = this.file.src;
-    var truncateFileCmd = '> ' +this.file.dest;
+    var templateDir = this.data.src;
+    var truncateFileCmd = '> ' +this.data.dest;
 
-    var handlebarsCmd = __dirname + '/../node_modules/.bin/handlebars -m ' + templateDir + '/*.handlebars -f ' + this.file.dest;
+    var handlebarsCmd = __dirname + '/../node_modules/.bin/handlebars -m ' + templateDir + '/*.handlebars -f ' + this.data.dest;
 
     // Check on which platform node is running.
     var finalCmd;
     if (process.platform == "win32") {
       // win32 cmd doesn't know what "&&" is and is also not able to use wildcards
       // anyway this will match all the files in the template dir anyway.
-      finalCmd =  __dirname + '/../node_modules/.bin/handlebars -m ' + templateDir + '/ -f ' + this.file.dest;
+      finalCmd =  __dirname + '/../node_modules/.bin/handlebars -m ' + templateDir + '/ -f ' + this.data.dest;
     } else {
       // others platform, set to the default command
       finalCmd = truncateFileCmd +' && '+ handlebarsCmd;
