@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     var templateDir = this.data.src;
     var truncateFileCmd = '> ' +this.data.dest;
 
-    var handlebarsCmd = __dirname + '/../node_modules/.bin/handlebars -m ' + templateDir + '/*.handlebars -f ' + this.data.dest;
+    var handlebarsCmd = __dirname + '/../node_modules/.bin/handlebars -rm ' + templateDir + '/*.handlebars -f ' + this.data.dest;
 
     // Check on which platform node is running.
     var finalCmd;
